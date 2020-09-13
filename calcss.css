@@ -1,0 +1,84 @@
+body {
+    font-family: 'Open Sans', sans-serif;
+    background-color: wheat;
+}
+#Container{
+width: 790px;
+max-width: 100%;
+height: 550px;
+background-image:linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.3)), url(img.jpg);
+background-size: contain;
+background-position: center;
+background-repeat: no-repeat;
+background-attachment: fixed;
+margin: 20px auto;
+
+}
+#Calculator{
+    width: 300px;
+    height: 500px;
+    background-color: whitesmoke;
+   margin: auto auto 20px auto;
+   position: relative;
+   top: 20px;
+   border-radius: 15px;
+   box-shadow: 0 5px 5px 0 rgba(0,0,0,0.3),0 5px 6px 0 rgba(0,0,0,0.19) ;
+}
+#Result{
+   height: 120px;
+}
+#History{
+    font-size: small;
+    text-align: right;
+    color: dimgray;
+    padding-top: 10px;
+    margin-right: 10px;
+
+}
+#Output{
+text-align: right;
+font-size: 25px;
+height: 50px;
+margin-right: 2px;
+}
+#keyboard{
+    height: 400px;
+}
+.Operator ,.Number ,.Empty{
+    width: 40px;
+    height: 40px;
+    margin: 15px;
+    float: left;
+    border-radius: 50%;
+    border-width: 0px;
+    font-weight: bold;
+    font-size: 18px;
+    
+}
+.Number,.Empty{
+    background-color: whitesmoke;
+}
+.Number,.Operator{
+    cursor: pointer;
+}
+.Number:focus,.Empty:focus,.Operator:focus{
+ outline: 0px;
+}
+button:nth-child(3){
+    background-color: pink;
+}
+button:nth-child(4){
+    background-color: red;
+}
+button:nth-child(8){
+    background-color:orange;
+}
+button:nth-child(12){
+    background-color: green;
+}
+button:nth-child(16){
+    background-color: yellow;
+}
+button:nth-child(20){
+    background-color: purple;
+}
