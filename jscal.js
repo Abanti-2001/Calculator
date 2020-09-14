@@ -1,3 +1,7 @@
+var hiss=0;
+var track=0;
+var audio=new Audio("number.mp3");
+var audio2=new Audio("operator.mp3");
 function history (){
     return document.getElementById("History-val").innerText;
 }
@@ -16,7 +20,8 @@ function printop(num){
 function getformatted(num){
 
     var n=Number(num);
-    var val=n.toLocaleString("en");
+   // alert(n);
+  var val=n.toLocaleString("en");
     return val;
 }
 function revnum(num){
@@ -26,34 +31,63 @@ function revnum(num){
 var operator= document.getElementsByClassName("Operator ");
 for(var i=0;i< operator.length;i++){
     operator[i].addEventListener('click',function(){
+        audio2.play();
         if(this.id=="C"){
             printhis("");
             printop("0");
-        }
+            track=0;
+                        }
        else if(this.id=="CE")
-        {
-            var val=revnum(getop()).toString();
+        {  
+            var val=getop();
+                val=val.replace(/,/g,'');
             if(val){
+              //  alert("Deleting the number :"+ val.charAt(val.length-1));
                 val= val.substr(0,val.length-1);
+                
+                if(val.includes(".")){
+                    //alert("dot");
+                    document.getElementById("Output-val").innerText=val;
+                }
+                    else
                 printop(val);
+                if(val.length-1==0){
+                    track=0;
+                    printop("0");}
         }
     }
         else{
         var output=getop();
         var his= history();
-        if(output!=""){
+if(this.id=='-'&& track==0 && output.charAt(0)==0)
+{   
+    //alert(track);
+    output='-';
+    document.getElementById("Output-val").innerText=this.id;
+    track=+1;
+}
+
+     else   if(output!=""  ){
             output=output==""?output:revnum(output);
             his=his+output;
-            if(this.id=="=")
+            var res,d;
+            if(this.id=="=" && hiss==0)
             {
-                var res=eval(his);
+                res=eval(his);
                 printop(res);
-                printhis("");
+                printhis(his);
+                hiss=1;
             }
             else{
                    his=his+this.id;
                    printhis(his);
                    printop("");
+            }
+            if(hiss==1 && this.id!='=' && this.id!='C' && this.id!='CE' ){
+                d=output;
+                printhis(d+this.id);
+                hiss=0;
+                alert(d);
             }
         }
     }
@@ -61,7 +95,18 @@ for(var i=0;i< operator.length;i++){
 }
 var number= document.getElementsByClassName("Number ");
 for(var i=0;i< number.length;i++){
-    number[i].addEventListener('click',function(){
+    number[i].addEventListener('click',function(){ 
+       audio.load();
+       audio.play();       
+        
+    if(hiss==1)
+    {
+      //  alert("Yes");
+        printop("");
+        printhis("");
+        hiss=0;
+    }
+
     var output=getop();
     if(this.id!=".")
 {
@@ -82,7 +127,10 @@ else if(this.id=="."){
     // alert("L");
     output=output+this.id;
     document.getElementById("Output-val").innerText=output;
- }     
+ }
     
 });
 }
+
+
+
