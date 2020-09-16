@@ -1,11 +1,14 @@
 body {
+    
     font-family: 'Open Sans', sans-serif;
     background-color: wheat;
 }
 #Container{
-width: 790px;
+   
+width: 795px;
 max-width: 100%;
 height: 550px;
+max-height: fit-content;
 background-image:linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.3)), url(img.jpg);
 background-size: contain;
 background-position: center;
@@ -14,34 +17,53 @@ background-attachment: fixed;
 margin: 20px auto;
 
 }
+
 #scroll{
+    position: relative;
+    background-color: transparent;
     width: auto;
     scroll-behavior: smooth;
     animation-direction: alternate;
     text-align: center;
-    background-color: #fff;
+    max-width: 100%;
+
+}
+.but:hover{
+    background-color: green;
+    cursor: pointer;
+    width: 70px;
+    
+    text-align: center;
+ }
+.but{
+    z-index: 1;
+    position: relative;
+    text-align: center;
+    font-size: small;
+    right: 190px;
+   background-color: blueviolet;
+  
+    
+    
+    outline: 0ch;
+    border-style: none;
+    transition-duration: 2s;
+    transition-property: width;
+}
+.Number:hover{
+    border-color: black;
+    border-radius: 50%;
+    border-width: 1px;
 }
 
-.but:hover{
-    width: 200px;
-    background-color: green;
-    text-decoration: double;
-    font-size: larger;}
-.but{
-    font-size: small;
-    background-color: blueviolet;
-    width: 100px;
-    height: 50px;
-    transition: width 2s;
-    transition-timing-function: cubic-bezier(0.1, 0.7, 1.0, 0.1);
-}
+
 #Calculator{
     width: 300px;
     height: 500px;
     background-color: whitesmoke;
    margin: auto auto 20px auto;
    position: relative;
-   top: 20px;
+   bottom: 50%;
    border-radius: 15px;
    box-shadow: 0 5px 5px 0 rgba(0,0,0,0.3),0 5px 6px 0 rgba(0,0,0,0.19) ;
 }
@@ -66,14 +88,14 @@ margin-right: 2px;
     height: 400px;
 }
 .Operator ,.Number ,.Empty{
-    width: 40px;
-    height: 40px;
+    width: 45px;
+    height: 45px;
     margin: 15px;
-    float: left;
+   float: left;
     border-radius: 50%;
     border-width: 0px;
     font-weight: bold;
-    font-size: 18px;
+    font-size: 20px;
     
 }
 .Number,.Empty{
@@ -85,6 +107,7 @@ margin-right: 2px;
 .Number:focus,.Empty:focus,.Operator:focus{
     outline: 10px;
    }
+
 button:nth-child(3){
     background-color: pink;
 }
@@ -106,6 +129,49 @@ button:nth-child(20){
 #C{
     background-color:yellow;
 }
-button:nth-child(2){
+#CE{
     background-color: blue;
+}
+
+#list {
+    z-index: 1;
+    display: block;
+    margin-top: 2px;
+    margin-left: 2px;
+   position: relative;
+    background-color: gray;
+    width: 70px;
+    height: 50%;
+    right:0px;
+    visibility: hidden;
+    
+}
+#slide.active #list{
+    z-index: 1;
+    opacity: 75%;
+    transition: ease-out 2s;
+    visibility: visible;
+    right: -20px;
+}
+
+.box span{
+    z-index: 2;
+    display: block;
+    margin-top: 2px;
+   position: relative;
+    background-color: black;
+    width: 5px;
+    height: 5px;
+    left: 5px;
+    
+}
+ .Number:nth-child(1),.Number:nth-child(2){
+   background-color: gray;
+   width: 45px;
+ }
+ .box button{
+    z-index: 2;
+     background-color: transparent;
+     border: 0cm;
+     outline: 0cm;
 }

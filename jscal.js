@@ -1,4 +1,4 @@
-var hiss=0;
+var hiss=0,t=0;
 var track=0;
 var audio=new Audio("number.mp3");
 var audio2=new Audio("operator.mp3");
@@ -36,6 +36,7 @@ for(var i=0;i< operator.length;i++){
             printhis("");
             printop("0");
             track=0;
+            hiss=0;
                         }
        else if(this.id=="CE")
         {  
@@ -44,42 +45,64 @@ for(var i=0;i< operator.length;i++){
             if(val){
               //  alert("Deleting the number :"+ val.charAt(val.length-1));
                 val= val.substr(0,val.length-1);
-                
-                if(val.includes(".")){
-                    //alert("dot");
+                if(val.includes(".") || val.includes("-") ){
                     document.getElementById("Output-val").innerText=val;
                 }
                     else
                 printop(val);
-                if(val.length-1==0){
+                if(val.length==0){
                     track=0;
                     printop("0");}
         }
-    }
-        else{
+    }   
+        else {
         var output=getop();
+        output=output.replace(/,/g,"");
         var his= history();
-if(this.id=='-'&& track==0 && output.charAt(0)==0)
+      //  alert(output);
+       
+if(this.id=='-'&& track==0 && output.charAt(0)==0 && t==0)
 {   
     //alert(track);
     output='-';
     document.getElementById("Output-val").innerText=this.id;
-    track=+1;
+   // alert(this.id);
+    track=1;
 }
 
-     else   if(output!=""  ){
-            output=output==""?output:revnum(output);
-            his=his+output;
-            var res,d;
-            if(this.id=="=" && hiss==0)
-            {
+     else if(output && output!="-")  
+      { 
+            //alert(output);
+            var res,d,b;
+            if(this.id=="%" && t==0)
+            {       
+                    output=output/100;
+                    his=his+output;
+                    printhis(his+"x");
+                    printop("");
+            }
+           else if(this.id=="=" && hiss==0)
+            {  
+                 
+                 his=his+output;
+
+                if(his.includes("(")&&!his.includes(")") ){
+                    his=his+")";
+                 //   alert(his);
+                }
+
                 res=eval(his);
+                    
                 printop(res);
                 printhis(his);
                 hiss=1;
+                
             }
-            else{
-                   his=his+this.id;
+            else if(this.id!="=" && t==0)
+            {
+
+                    his=his+output;
+                        his=his+this.id;
                    printhis(his);
                    printop("");
             }
@@ -87,50 +110,84 @@ if(this.id=='-'&& track==0 && output.charAt(0)==0)
                 d=output;
                 printhis(d+this.id);
                 hiss=0;
-                alert(d);
+               // alert(d);
             }
         }
-    }
+        t=1;
+}
 });
 }
 var number= document.getElementsByClassName("Number ");
 for(var i=0;i< number.length;i++){
     number[i].addEventListener('click',function(){ 
        audio.load();
-       audio.play();       
-        
-    if(hiss==1)
+       audio.play();  
+       t=0;        
+    if(hiss==1 && output!="-")
     {
-      //  alert("Yes");
+      
         printop("");
         printhis("");
         hiss=0;
     }
 
     var output=getop();
-    if(this.id!=".")
-{
-    if(revnum(output)!=NaN && !output.includes(".")){
-  //  alert("Num");
-    output=output+this.id;
-    printop(revnum(output));
+    if(output==0)
+        output="";
+
+   
+ if(Number.isInteger(revnum(output)) && Number.isInteger(Number(this.id)))
+{   
+            
+            output=output+this.id;
+           output= revnum(output);
+            printop(output);
 }
-}
-else if(this.id=="."){
+ else if(this.id=="."){
     if(output.includes("."))
         output=output+"";
         else
         output=output+".";
+        
     document.getElementById("Output-val").innerText=output;
 }
- if(output.includes(".") && this.id!=".")  {
+ else if(output.includes(".") && this.id!=".")  {
     // alert("L");
     output=output+this.id;
     document.getElementById("Output-val").innerText=output;
  }
+ if(this.id=="("){
+     if(!output.includes("(")){
+         document.getElementById("Output-val").innerText="(";
+     }
+ }
+ else if(this.id==")" && output.includes("(")){
+    if(!output.includes(")")){
+        
+        document.getElementById("Output-val").innerText=")";
+    }
+}
+ if(output.charAt(0)=="("||output=="-"){
+        output=output+this.id;
+      
+        var s,v,s1;
+        s1=output.substr(1,output.length);
+        s1=revnum(s1);
+        
+        s=Number(s1);
+        v=s.toLocaleString("en");
+        if(output.charAt(0)=="(")
+        output="("+v;
+        else
+        output="-"+v;
+        document.getElementById("Output-val").innerText=output;
+     
+}
     
 });
 }
-
+function dao(){
+    document.getElementById('slide').classList.toggle('active');
+}
 
 
