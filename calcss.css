@@ -8,15 +8,19 @@ body {
     color: white;
 }
 #Container{
-   position: relative;
+position: relative;
 width: 100%;
-height: 100%;
+height: fit-content;
 background-image:linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.3)), url(img.jpg);
 background-size: cover;
 background-position: center;
 background-repeat: no-repeat;
 background-attachment: fixed;
 margin: 20px auto;
+contain: content;
+padding-bottom: 10px;
+padding-left: 5px;
+padding-right: 5px;
 }
 
 
@@ -47,51 +51,52 @@ a:hover{
 
 
 #Calculator{
-    width: 350px;
-    height: 90%;
+    z-index: 1;
+    width: 320px;
+    height: fit-content;
+    max-width: 100%;
     max-height: fit-content;
     position: relative;
-    background-color: lightpink;
-    margin: auto;  
+    background-color: whitesmoke;
+    margin: 0px auto;  
    border-radius: 15px;
    box-shadow: 0 5px 5px 0 rgba(0,0,0,0.3),0 5px 6px 0 rgba(0,0,0,0.19) ;
-   color: black;
+    padding-top: 5px;
 }
 #Result{
-   height: 120px;
+    top: 10px;
+   height: 75px;
+   background-color: transparent;
+   display: block;
 }
 #History{
     font-size: small;
     text-align: right;
     color: dimgray;
-    padding-top: 10px;
     margin-right: 10px;
-
+    background-color: transparent;
+    height: 10px;
 }
 #Output{
 text-align: right;
 font-size: 25px;
 height: 30px;
-margin-right: 2px;
+padding-right: 5px;
+background-color: transparent;
 }
-#keyboard{
-    height: max-content;
-    float: left;
-    position: relative;
-}
+
 .Operator ,.Number ,.Empty{
     width: 45px;
     height: 45px;
     margin: 15px;
-   float: left;
     border-radius: 50%;
     border-width: 0px;
     font-weight: bold;
     font-size: 20px;
-    
+    text-align: left;
 }
 .Number,.Empty{
-    background-color:lightpink;
+    background-color: transparent;
 }
 .Number,.Operator{
     cursor: pointer;
@@ -101,7 +106,7 @@ margin-right: 2px;
    }
 
 button:nth-child(3){
-    background-color: pink;
+    background-color: gold;
 }
 button:nth-child(4){
     background-color: red;
@@ -119,7 +124,7 @@ button:nth-child(20){
     background-color: purple;
 }
 #C{
-    background-color:yellow;
+    background-color:lightblue;
 }
 #CE{
     background-color: blue;
@@ -129,12 +134,12 @@ button:nth-child(20){
     display: block;
     margin-top: 2px;
     margin-left: 2px;
-   position: relative;
-    background-color: gray;
+     position: relative;
+    background-color: transparent;
     width: 70px;
     right:0px;
     visibility: hidden;
-    
+    height: 0px;
 }
 #slide.active #list{
     z-index: 1;
