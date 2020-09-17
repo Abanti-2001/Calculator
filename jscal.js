@@ -1,4 +1,4 @@
-var hiss=0,t=0;
+var hiss=0,t=1;
 var track=0;
 var audio=new Audio("number.mp3");
 var audio2=new Audio("operator.mp3");
@@ -35,8 +35,8 @@ for(var i=0;i< operator.length;i++){
         if(this.id=="C"){
             printhis("");
             printop("0");
-            track=0;
             hiss=0;
+            t=1;
                         }
        else if(this.id=="CE")
         {  
@@ -51,7 +51,7 @@ for(var i=0;i< operator.length;i++){
                     else
                 printop(val);
                 if(val.length==0){
-                    track=0;
+                    t=0;
                     printop("0");}
         }
     }   
@@ -59,29 +59,9 @@ for(var i=0;i< operator.length;i++){
         var output=getop();
         output=output.replace(/,/g,"");
         var his= history();
-      //  alert(output);
-       
-if(this.id=='-'&& track==0 && output.charAt(0)==0 && t==0)
-{   
-    //alert(track);
-    output='-';
-    document.getElementById("Output-val").innerText=this.id;
-   // alert(this.id);
-    track=1;
-}
-
-     else if(output && output!="-")  
-      { 
             //alert(output);
-            var res,d,b;
-            if(this.id=="%" && t==0)
-            {       
-                    output=output/100;
-                    his=his+output;
-                    printhis(his+"x");
-                    printop("");
-            }
-           else if(this.id=="=" && hiss==0)
+            var res,d;
+            if(this.id=="=" && hiss==0)
             {  
                  
                  his=his+output;
@@ -96,25 +76,38 @@ if(this.id=='-'&& track==0 && output.charAt(0)==0 && t==0)
                 printop(res);
                 printhis(his);
                 hiss=1;
-                
+                t=1;
             }
-            else if(this.id!="=" && t==0)
+            else if(this.id=="-" && t==1 && hiss==0){
+                document.getElementById("Output-val").innerText=this.id;
+            }
+
+            else if(t==0)
             {
 
+                if(this.id=="%"){
+                    output=output/100;
                     his=his+output;
-                        his=his+this.id;
+                    printhis(his);
+                    printop("");
+                }
+                   else{ 
+                    his=his+output;
+                    his=his+this.id;
                    printhis(his);
                    printop("");
+                }
             }
             if(hiss==1 && this.id!='=' && this.id!='C' && this.id!='CE' ){
                 d=output;
                 printhis(d+this.id);
-                hiss=0;
+                printop("");
                // alert(d);
+               hiss=0;
             }
+                                        t=1;
         }
-        t=1;
-}
+        
 });
 }
 var number= document.getElementsByClassName("Number ");
@@ -123,7 +116,7 @@ for(var i=0;i< number.length;i++){
        audio.load();
        audio.play();  
        t=0;        
-    if(hiss==1 && output!="-")
+    if(hiss==1)
     {
       
         printop("");
@@ -161,10 +154,12 @@ for(var i=0;i< number.length;i++){
          document.getElementById("Output-val").innerText="(";
      }
  }
- else if(this.id==")" && output.includes("(")){
+ else if(this.id==")"     ){
     if(!output.includes(")")){
-        
-        document.getElementById("Output-val").innerText=")";
+        alert(this.id);
+        output=output+this.id;
+        alert(output);
+        document.getElementById("Output-val").innerText=output;
     }
 }
  if(output.charAt(0)=="("||output=="-"){
