@@ -154,11 +154,9 @@ for(var i=0;i< number.length;i++){
          document.getElementById("Output-val").innerText="(";
      }
  }
- else if(this.id==")"     ){
+ else if(this.id==")"  && history().includes("(") && output  ){
     if(!output.includes(")")){
-        alert(this.id);
         output=output+this.id;
-        alert(output);
         document.getElementById("Output-val").innerText=output;
     }
 }
@@ -185,4 +183,7 @@ function dao(){
     document.getElementById('slide').classList.toggle('active');
 }
 
-
+function night(){
+    var e=document.body;
+    e.classList.toggle("darkmode");
+}

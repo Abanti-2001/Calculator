@@ -1,16 +1,18 @@
 body {
-    
+    align-content: center;
     font-family: 'Open Sans', sans-serif;
     background-color: wheat;
 }
+.darkmode{
+    background-color: black;
+    color: white;
+}
 #Container{
    position: relative;
-width: 795px;
-max-width: auto;
-height: 550px;
-max-height: max-content;
+width: 100%;
+height: 100%;
 background-image:linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.3)), url(img.jpg);
-background-size: auto;
+background-size: cover;
 background-position: center;
 background-repeat: no-repeat;
 background-attachment: fixed;
@@ -19,6 +21,7 @@ margin: 20px auto;
 
 
 a:link, a:active{
+    position: relative;
     z-index: 1;
     background-color: #f44336;
   color: white;
@@ -33,7 +36,6 @@ a:link, a:active{
 }
 a:hover{
     width: 130px;
-    
 }
 
 
@@ -45,14 +47,15 @@ a:hover{
 
 
 #Calculator{
+    width: 350px;
+    height: 90%;
+    max-height: fit-content;
     position: relative;
-    width: 300px;
-    height: 500px;
-    max-width: 100%;
-    background-color: whitesmoke;
-    margin: 10px auto;  
+    background-color: lightpink;
+    margin: auto;  
    border-radius: 15px;
    box-shadow: 0 5px 5px 0 rgba(0,0,0,0.3),0 5px 6px 0 rgba(0,0,0,0.19) ;
+   color: black;
 }
 #Result{
    height: 120px;
@@ -68,11 +71,13 @@ a:hover{
 #Output{
 text-align: right;
 font-size: 25px;
-height: 50px;
+height: 30px;
 margin-right: 2px;
 }
 #keyboard{
-    height: 400px;
+    height: max-content;
+    float: left;
+    position: relative;
 }
 .Operator ,.Number ,.Empty{
     width: 45px;
@@ -86,7 +91,7 @@ margin-right: 2px;
     
 }
 .Number,.Empty{
-    background-color: whitesmoke;
+    background-color:lightpink;
 }
 .Number,.Operator{
     cursor: pointer;
@@ -145,15 +150,32 @@ button:nth-child(20){
     margin-top: 2px;
    position: relative;
     background-color: black;
-    width: 15px;
-    height: 7px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-left: 2px;
+    
    
     
 }
 #slide{
-    width: 15px;
+    width: 20px;
 }
  .Number:nth-child(1),.Number:nth-child(2){
    background-color: gray;
    width: 45px;
  }
+ #night{
+    margin: 0px auto;
+    background-color: transparent;
+    display: block;
+    height: 50px;
+    width: 50px;
+    background-image: url(moon.png);
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    border-width: 0px;
+    color: white;
+    outline-style: none;
+}
