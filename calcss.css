@@ -2,10 +2,33 @@ body {
     align-content: center;
     font-family: 'Open Sans', sans-serif;
     background-color: wheat;
+    padding-left: 10px;padding-right: 10px;
 }
 .darkmode{
+   background-image: url(sparkle.jpg);
+}
+.darkmode #Calculator{
     background-color: black;
-    color: white;
+    border: 1px solid white;
+    border-radius: 15px;
+}
+.darkmode .Number{
+    color:white;
+}
+.darkmode .Number:hover{
+    border-color: white;
+    border-radius: 50%;
+    border-width: 1px;
+}
+.darkmode #Container{
+    background-image: url(sparkle.jpg);
+}
+.darkmode #box span{
+    background-color: white;
+}
+.darkmode #night{
+    border:1px solid white;
+    border-radius: 15px;
 }
 #Container{
 position: relative;
@@ -21,28 +44,23 @@ contain: content;
 padding-bottom: 10px;
 padding-left: 5px;
 padding-right: 5px;
+border-radius: 15px;
 }
-
-
-a:link, a:active{
+a{
     position: relative;
-    z-index: 1;
-    background-color: #f44336;
-  color: white;
-  padding: 14px 25px;
+    background-color: gray;
   text-decoration: none;
-  display: block;
   text-align: center;
  width:100px;
+ font-size: large;
   transition-property: width;
   transition-duration:2s;
   margin: 10px auto;
+  display: block;
 }
 a:hover{
     width: 130px;
 }
-
-
 .Number:hover{
     border-color: black;
     border-radius: 50%;
@@ -51,7 +69,6 @@ a:hover{
 
 
 #Calculator{
-    z-index: 1;
     width: 320px;
     height: fit-content;
     max-width: 100%;
@@ -60,14 +77,14 @@ a:hover{
     background-color: whitesmoke;
     margin: 0px auto;  
    border-radius: 15px;
-   box-shadow: 0 5px 5px 0 rgba(0,0,0,0.3),0 5px 6px 0 rgba(0,0,0,0.19) ;
     padding-top: 5px;
+    
 }
 #Result{
     top: 10px;
    height: 75px;
    background-color: transparent;
-   display: block;
+   
 }
 #History{
     font-size: small;
@@ -93,7 +110,7 @@ background-color: transparent;
     border-width: 0px;
     font-weight: bold;
     font-size: 20px;
-    text-align: left;
+    text-align: center;
 }
 .Number,.Empty{
     background-color: transparent;
@@ -168,7 +185,8 @@ button:nth-child(20){
 }
  .Number:nth-child(1),.Number:nth-child(2){
    background-color: gray;
-   width: 45px;
+   width: 60px;
+   height: 60px;
  }
  #night{
     margin: 0px auto;

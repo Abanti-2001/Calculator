@@ -59,7 +59,6 @@ for(var i=0;i< operator.length;i++){
         var output=getop();
         output=output.replace(/,/g,"");
         var his= history();
-            //alert(output);
             var res,d;
             if(this.id=="=" && hiss==0)
             {  
@@ -78,11 +77,18 @@ for(var i=0;i< operator.length;i++){
                 hiss=1;
                 t=1;
             }
-            else if(this.id=="-" && t==1 && hiss==0){
+            else if(this.id=="-" && t==1 && hiss==0 ){
+                if(output==0)
+                    output="";
+                if(output){
+                    output=output+this.id;
+                document.getElementById("Output-val").innerText=output;
+                                }
+                else
                 document.getElementById("Output-val").innerText=this.id;
             }
 
-            else if(t==0)
+            else if(t==0 && output!="(")
             {
 
                 if(this.id=="%"){
@@ -98,7 +104,7 @@ for(var i=0;i< operator.length;i++){
                    printop("");
                 }
             }
-            if(hiss==1 && this.id!='=' && this.id!='C' && this.id!='CE' ){
+            if(hiss==1 && this.id!='=' && this.id!='C' && this.id!='CE'){
                 d=output;
                 printhis(d+this.id);
                 printop("");
@@ -114,8 +120,7 @@ var number= document.getElementsByClassName("Number ");
 for(var i=0;i< number.length;i++){
     number[i].addEventListener('click',function(){ 
        audio.load();
-       audio.play();  
-       t=0;        
+       audio.play();       
     if(hiss==1)
     {
       
@@ -125,18 +130,20 @@ for(var i=0;i< number.length;i++){
     }
 
     var output=getop();
+
     if(output==0)
         output="";
 
    
  if(Number.isInteger(revnum(output)) && Number.isInteger(Number(this.id)))
-{   
-            
+{           
+            t=0;
             output=output+this.id;
            output= revnum(output);
             printop(output);
 }
  else if(this.id=="."){
+     t=0;
     if(output.includes("."))
         output=output+"";
         else
@@ -144,14 +151,15 @@ for(var i=0;i< number.length;i++){
         
     document.getElementById("Output-val").innerText=output;
 }
- else if(output.includes(".") && this.id!=".")  {
+else if(output.includes(".") && this.id!=".")  {
     // alert("L");
     output=output+this.id;
     document.getElementById("Output-val").innerText=output;
  }
- if(this.id=="("){
+ else if(this.id=="("){
      if(!output.includes("(")){
-         document.getElementById("Output-val").innerText="(";
+         output=output+this.id;
+         document.getElementById("Output-val").innerText=output;
      }
  }
  else if(this.id==")"  && history().includes("(") && output  ){
@@ -160,23 +168,27 @@ for(var i=0;i< number.length;i++){
         document.getElementById("Output-val").innerText=output;
     }
 }
- if(output.charAt(0)=="("||output=="-"){
-        output=output+this.id;
-      
-        var s,v,s1;
-        s1=output.substr(1,output.length);
-        s1=revnum(s1);
-        
-        s=Number(s1);
-        v=s.toLocaleString("en");
-        if(output.charAt(0)=="(")
-        output="("+v;
-        else
-        output="-"+v;
-        document.getElementById("Output-val").innerText=output;
-     
+if(output.charAt(0)=="(" || output.charAt(0)=="-"){
+    if(!output.includes(".") && this.id!="." && this.id!="(" && this.id!=")")
+    {   t=0;
+        var s,s1=output,s2,v,g;
+        s2=output+this.id;
+    if(output.charAt(1)=="("||output.charAt(1)=="-"){
+        v=output.charAt(0)+output.charAt(1);
+        s=s2.substr(2,output.length);
+    }
+    else{
+        v=output.charAt(0);
+        s=s2.substr(1,output.length);
+    }
+    if(s){
+       g=s.replace(/,/g,'');
+    s1=Number(g).toLocaleString("en");
+    v=v+s1;
+    document.getElementById("Output-val").innerText=v;
 }
-    
+}
+}
 });
 }
 function dao(){
