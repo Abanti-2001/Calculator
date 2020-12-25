@@ -6,6 +6,7 @@ body {
 }
 .darkmode{
    background-image: url(sparkle.jpg);
+   color:white;
 }
 .darkmode #Calculator{
     background-color: black;
