@@ -4,7 +4,7 @@ body {
     background-color: wheat;
     padding-left: 10px;padding-right: 10px;
 }
-.darkmode{
+.darkmode #Container{
    background-image: url(sparkle.jpg);
    color:white;
 }
@@ -28,10 +28,21 @@ body {
     background-color: white;
 }
 .darkmode #night{
-    border:1px solid white;
-    border-radius: 15px;
+    margin: 0px auto;
+    background-color: transparent;
+    display: block;
+    height: 50px;
+    width: 50px;
+    background-image: url(Sun.png);
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    border-width: 0px;
+    color: white;
+    outline-style: none;
 }
 #Container{
+    
 position: relative;
 width: 100%;
 height: fit-content;
